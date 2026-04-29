@@ -41,7 +41,7 @@ pipeline {
             steps {
                 script {
                     def scannerHome = tool 'SonarScanner'
-                    withSonarQubeEnv('frontend_crisisview-main') {
+                    withSonarQubeEnv('sonar-spokay') {
                         sh "${scannerHome}/bin/sonar-scanner"
                     }
                 }
