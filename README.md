@@ -26,7 +26,7 @@ Full CRUD (Create, Read, Update, Delete) management for:
 
 ### Prerequisites
 - **Node.js** (v18+)
-- **Running Backend API**: Ensure the [Backend API](https://github.com/fredericEducentre/api_crisiview) is running on `http://localhost:3001`.
+- **Running Backend API**: Ensure the [Backend API](https://github.com/fredericEducentre/api_crisiview) is running on `http://localhost:3000`.
 
 ### Installation
 
@@ -84,4 +84,4 @@ app/
 ## 🔗 Connection to API
 
 The frontend connects to the backend via local network requests. The default API URL is configured as:
-`http://localhost:3001`
+`http://localhost:3000`
