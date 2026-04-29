@@ -1,12 +1,12 @@
 services:
   frontend:
-    image: registry.spokayhub.top/efrei-projet-fil-rouge-cicd-frontend:${IMAGE_TAG:-latest}
-    container_name: efrei-projet-fil-rouge-cicd-frontend-stg
+    image: registry.spokayhub.top/frontend_crisisview-main:${IMAGE_TAG:-latest}
+    container_name: frontend_crisisview-main-stg
     ports:
       - "80:80"
     restart: unless-stopped
     env_file:
-      - ./frontend-stg.env
+      - ./frontend_crisisview-main-stg.env
     logging:
       driver: json-file
       options:
