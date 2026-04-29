@@ -1,0 +1,14 @@
+services:
+  frontend:
+    image: registry.spokayhub.top/efrei-projet-fil-rouge-cicd-frontend:${IMAGE_TAG:-latest}
+    container_name: efrei-projet-fil-rouge-cicd-frontend-stg
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    env_file:
+      - ./frontend-stg.env
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
