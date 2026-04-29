@@ -37,24 +37,24 @@ pipeline {
             }
         }
 
-        //stage('SonarQube Analysis') {
-         //   steps {
-          //      script {
-           //         def scannerHome = tool 'SonarScanner'
-             //       withSonarQubeEnv('sonar-spokay') {
-              //          sh "${scannerHome}/bin/sonar-scanner"
-             //       }
-              //  }
-           // }
-       // }
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'SonarScanner'
+                    withSonarQubeEnv('sonar-spokay') {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                }
+            }
+        }
 
-       // stage('Quality Gate') {
-        //    steps {
-          //      timeout(time: 5, unit: 'MINUTES') {
-            //        waitForQualityGate abortPipeline: true
-              //  }
-            //}
-        //}
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 5, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
 
         stage('Build') {
             steps {
