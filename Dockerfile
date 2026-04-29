@@ -2,17 +2,23 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-COPY package*.json /app
+COPY package*.json ./
 RUN npm ci
 
 COPY . .
 
 RUN npm run build
-FROM nginx:stable-alpine3.20-slim AS runtime
 
-COPY --from=builder /app/out /usr/share/nginx/html
-COPY ./nginx.conf /etc/nginx/nginx.conf
+FROM node:20-alpine AS runtime
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/node_modules ./node_modules
 
 EXPOSE 80
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+CMD ["npm", "run", "start"]
