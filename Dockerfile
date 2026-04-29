@@ -7,8 +7,7 @@ RUN npm ci
 
 COPY . .
 
-RUN npm run build && npm run export
-
+RUN npm run build
 FROM nginx:stable-alpine3.20-slim AS runtime
 
 COPY --from=builder /app/out /usr/share/nginx/html
